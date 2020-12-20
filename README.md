@@ -1,2 +1,1 @@
-# study
-just for study
+# 我的学习笔记
