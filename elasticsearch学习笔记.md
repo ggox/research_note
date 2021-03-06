@@ -32,7 +32,7 @@
 
 5. 倒排索引
 
-   * 词典 （FST-确定无环优先状态转移器）
+   * 词典 （FST-确定无环有限状态转移器）
    * 倒排表
 
 6. SearchAPI(具体请看官网api) [Documentationi链接](https://www.elastic.co/guide/index.html)
@@ -118,6 +118,11 @@
      1. 多个Segment的集合，segment是自包含的，<b>不可变的</b>
      2. 有新文档写入时，生成新的segment，查询时查询所有的segment并汇总结果。lucene中有一个文件，用来记录所有的segment信息，叫做commit point
      3. 删除的文档保存在“.del”文件中
+     4. Segment数据结构：
+        * Inverted Index
+        * Stored Field
+        * Document Values（替换field data）
+        * Cache
      
    * es refresh
    
@@ -137,14 +142,14 @@
    
    * Merge
    
-     1. segement很多，需要定期合并，减少sements/删除已经删除的文档
+     1. segment很多，需要定期合并，减少segment/删除已经删除的文档
      2. es和lucene会自动进行merge，也可以手动触发：POST my_index/_forcemerge
    
    * 排序
    
-     1. 排序子弹针对原始内容进行的，倒排索引无法发挥作用
+     1. 排序字段针对原始内容进行的，倒排索引无法发挥作用
    
-     2. 需要用到正排索引，通过文档id和字段快速得到子弹的原始内容
+     2. 需要用到正排索引，通过文档id和字段快速得到字段的原始内容
    
      3. 两种实现：fileddata 和 doc values(列式存储)
    
@@ -159,7 +164,7 @@
      4. 深度分页性能问题：需要从全部分片上获取所有可能的数据，在Coordinating节点上进行聚合返回
    
         * Search After：通过唯一排序值定位，将每次要处理的文档数控制在一定范围，不支持From参数
-        * ScrollAPI：创建一个快照，有新数据写入后，无法没查询，每次查询需要输入上次的Scroll Id 可用于导出数据等业务场景 
+        * ScrollAPI：创建一个快照，有新数据写入后，无法查询，每次查询需要输入上次的Scroll Id 可用于导出数据等业务场景 
    
      5. 并发读控制：乐观锁并发控制 
    

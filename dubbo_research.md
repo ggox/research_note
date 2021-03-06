@@ -55,11 +55,22 @@
 * 服务发布端启动流程剖析
 
   ![ServiceConfig#expoprt](https://tva1.sinaimg.cn/large/007S8ZIlly1gio5t8dywgj30wr0jtt9r.jpg)
-  
+
+  补充：
+
+  	1. QosProtocolWrapper：用于启动运维服务，全局只有一个，底层使用netty监听服务
+  	2. ListenerExporterWrapper：为Exporter提供了两个生命周期回调(exported和unexported),可以进行相关扩展
+  	3. ProtocolFilterWrapper：提供了非常实用的过滤器功能
+
   ![RegistryProtocol#export](https://tva1.sinaimg.cn/large/007S8ZIlly1gio6788zy7j30wz0gjmxy.jpg)
-  
-  ![RegistryProtocol#openServer](https://tva1.sinaimg.cn/large/007S8ZIlly1gio6ij4jajj30p40ajq3a.jpg)
-  
+
+  ![********RegistryProtocol#openServer********](https://tva1.sinaimg.cn/large/007S8ZIlly1gio6ij4jajj30p40ajq3a.jpg)
+
   ![register](https://tva1.sinaimg.cn/large/007S8ZIlly1gio6wotv7vj30re0gjwf7.jpg)
-  
+  ![NettyServer](https://tva1.sinaimg.cn/large/0081Kckwly1gmaxkh6binj310a0s73zq.jpg)
+
+
 * 服务提供方处理请求
+
+  大致和provider差不多的流程，多了集群容错的组件
+

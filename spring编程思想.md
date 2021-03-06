@@ -847,7 +847,35 @@
 * 基于ProxyFactoryBean，编码的方式来实现
 * 基于 AspectJ 注解实现
 
+### 三、Spring Aop基础
 
+1. Pointcut 的 API 实现
+   * org.springframework.aop.Pointcut - 核心api
+     * org.springframework.aop.ClassFilter
+     * org.springframework.aop.MethodMatcher
+   * org.springframework.aop.support.DefaultPointcutAdvisor - 适配实现
+2. API实现Before Advice - org.springframework.aop.BeforeAdvice
+   * 类型：标记接口，与Advice类似
+   * 方法 JoinPoint 扩展 - org.springframework.aop.MethodBeforeAdvice
+   * 接受对象 - org.springframework.aop.framework.AdvisedSupport
+     * 基础实现类 - org.springframework.aop.framework.ProxyCreatorSupport
+     * 常见实现类
+       1. org.springframework.aop.framework.ProxyFactory
+       2. org.springframework.aop.framework.ProxyFactoryBean
+       3. org.springframework.aop.aspectj.annotation.AspectJProxyFactory
+3. API实现After Advice - org.springframework.aop.AfterAdvice
+   * 类型：标记接口，与Advice类似
+   * 扩展
+     * org.springframework.aop.AfterReturningAdvice
+     * org.springframework.aop.ThrowsAdvice
+   * 接收对象同BeforeAdvice
+4. 自动动态代理
+   1. org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator
+   2. org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator
+   3. org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator
+5. Aop代理实现 -- AopProxy
+   1. JdkDynamicAopProxy —— ReflectiveMethodInvocation
+   2. ObjenesisCglibAopProxy and CglibAopProxy : 前者使用了Objenesis技术进行了优化，objenesis可以绕过无参构造方法进行对象的实例化  ——  CglibMethodInvocation
 
 
 ​     

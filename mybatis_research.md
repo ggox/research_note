@@ -23,7 +23,7 @@
 
   * 类继承结构
 
-    ![image-20201125181500657](/Users/xuhui/Library/Application Support/typora-user-images/image-20201125181500657.png)
+    ![image-20201125181500657](https://tva1.sinaimg.cn/large/0081Kckwly1glz185c4hhj30ny07qq36.jpg)
 
 ###### 五、StatementHandler
 
@@ -37,7 +37,7 @@
 
   * 类继承结构
 
-    ![image-20201125182030582](/Users/xuhui/Library/Application Support/typora-user-images/image-20201125182030582.png)
+    ![image-20201125182030582](https://tva1.sinaimg.cn/large/0081Kckwly1glz18apa2sj30pi05vglu.jpg)
 
 ###### 六、ParameterHandler
 
@@ -103,7 +103,7 @@
   
   * 结构
   
-    ![image-20201125183543691](/Users/xuhui/Library/Application Support/typora-user-images/image-20201125183543691.png)
+    ![image-20201125183543691](https://tva1.sinaimg.cn/large/0081Kckwly1glz18txz94j30v4043t8t.jpg)
 
 ###### 十、BoundSql
 
