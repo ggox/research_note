@@ -876,6 +876,16 @@
 5. Aop代理实现 -- AopProxy
    1. JdkDynamicAopProxy —— ReflectiveMethodInvocation
    2. ObjenesisCglibAopProxy and CglibAopProxy : 前者使用了Objenesis技术进行了优化，objenesis可以绕过无参构造方法进行对象的实例化  ——  CglibMethodInvocation
+6. 容器自动代理抽象 — org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator
+   * 和SpringBean生命周期整合  —  org.springframework.beans.factory.config.SmartInstantiationAwareBeanPostProcessor
+   * 增加Advisor查找能力 — org.springframework.aop.framework.autoproxy.AbstractAdvisorAutoProxyCreator
+     * 依赖工具类：org.springframework.aop.framework.autoproxy.BeanFactoryAdvisorRetrievalHelper
+   * 增加AspectJ扩展能力：org.springframework.aop.aspectj.autoproxy.AspectJAwareAdvisorAutoProxyCreator
+   * 增加AspectJ注解能力：org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator
+7. Aop工具类三剑客：
+   1. Aop上下文辅助类：org.springframework.aop.framework.AopContext
+   2. 代理工厂工具类：org.springframework.aop.framework.AopProxyUtils
+   3. 通用工具类：org.springframework.aop.support.AopUtils
 
 
 ​     
