@@ -14,7 +14,7 @@
 
 5. 打印 banner
 
-6. 创建ApplicationContext
+6. 创建ApplicationContext 
 
 7. prepareContext:
 

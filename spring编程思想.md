@@ -826,6 +826,31 @@
 13. stop 阶段
 14. 关闭阶段
 
+补充：几个主要的BeanPostProcessor添加的地方
+
+1. ApplicationContextAwareProcessor -- 用于ApplicationContext相关aware接口回调（beanFactory相关aware接口是在初始化阶段回调的）
+
+   * org.springframework.context.support.AbstractApplicationContext#prepareBeanFactory
+
+2. ConfigurationClassPostProcessor -- 处理配置类的核心类
+
+3. AutowiredAnnotationBeanPostProcessor -- 处理@Value @Autowire
+
+4. CommonAnnotationBeanPostProcessor -- 处理 @Resource @PostConstruct @PreDestroy
+
+   * 以上三个都是通过 AnnotationConfigUtils#registerAnnotationConfigProcessors注册的
+
+     AnnotationConfigUtils#registerAnnotationConfigProcessors调用了上面的方法
+
+   * 调用上面这个工具方法的有：
+
+     * NamespaceHandler解析时如：
+       * AnnotationConfigBeanDefinitionParser#parse
+       * ComponentScanBeanDefinitionParser#registerComponents
+     * 注解处理时：
+       * AnnotatedBeanDefinitionReader的构造方法
+       * 扫描包时 ClassPathBeanDefinitionScanner#scan
+
 
 
 ## II. Spring Aop 模块
@@ -886,6 +911,26 @@
    1. Aop上下文辅助类：org.springframework.aop.framework.AopContext
    2. 代理工厂工具类：org.springframework.aop.framework.AopProxyUtils
    3. 通用工具类：org.springframework.aop.support.AopUtils
+8. AspectJ enable 模式驱动
+   1. org.springframework.context.annotation.EnableAspectJAutoProxy
+   2. org.springframework.context.annotation.AspectJAutoProxyRegistrar
+   3. 核心：org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator
+9. XML 驱动
+   1. &lt;aop:aspectj-autoproxy/&gt;
+      * 设计模式：Extensible XML Authoring
+      * 核心：org.springframework.aop.config.AspectJAutoProxyBeanDefinitionParser
 
+   1. &lt;aop:config/&gt;
+      * 嵌套元素：
+        1. pointcut
+        2. advisor
+        3. aspect
+      * 核心：org.springframework.aop.config.ConfigBeanDefinitionParser
+      
+   1. &lt;aop:aspect/&gt;、&lt;aop:pointcut/&gt;、&lt;aop:advisor/&gt;等等
 
-​     
+      
+
+      
+
+   

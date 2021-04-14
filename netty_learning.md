@@ -255,4 +255,15 @@
   * 可控（DEFAULT_SHUTDOWN_TIMEOUTY)
   * 先不接活，后尽量干完手头的活（先关boss后关worker；不是100%保证）
   
-  
+
+
+
+###### 补充：netty性能优化的极致体现在哪些细节上？
+
+1. 通过反射或者Unsafe的方式替换Selector中的selectedKeys的Set实现，采用数组实现的set(默认是HashSet)，充分利用cpu缓存行
+2. EventLoop的taskQueue采用MPSC（多个生产者单个消费者）的队列实现，因为eventloop只绑定一个线程，所以可以有优化空间，具体实现细节：采用无锁形式，利用Unsafe的cas能力
+3. EventExecutorChooser的选择，如果是2的幂次方，采用位运算，否则取模
+4. FastThreadLocal + FastThreadLocalThread + InternalThreadLocalMap, 优化核心点：数组替换Map
+5. 不直接使用jdk的SelectorProvider.provider()，而是共享一个provider
+6. 通过 冗余long字段，解决缓存行伪共享问题
+
