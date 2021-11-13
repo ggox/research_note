@@ -929,8 +929,40 @@
       
    1. &lt;aop:aspect/&gt;、&lt;aop:pointcut/&gt;、&lt;aop:advisor/&gt;等等
 
-      
+### 四、Spring Aop在框架内部的应用
 
-      
+1. Spring事件中的应用（events）
+   * 核心API：org.springframework.context.event.EventPublicationInterceptor
+2. Spring事务中的应用（transaction）
+   * 核心API：
+     1. @Enable驱动：@EnableTransactionManagement
+     2. 事务注解：@Transactional
+     3. 事务事件监听器：org.springframework.transaction.event.TransactionalEventListener
+     4. 事务定义：org.springframework.transaction.TransactionDefinition
+     5. 事务状态：org.springframework.transaction.TransactionStatus
+     6. 平台事务管理器：org.springframework.transaction.PlatformTransactionManager
+     7. 事务代理配置：org.springframework.transaction.annotation.ProxyTransactionManagementConfiguration
+     8. 事务PointcutAdvisor实现：org.springframework.transaction.interceptor.BeanFactoryTransactionAttributeSourceAdvisor
+     9. 事务MethodInterceptor实现：org.springframework.transaction.interceptor.TransactionInterceptor
+     10. 事务属性源：org.springframework.transaction.interceptor.TransactionAttributeSource
+3. Spring缓存中的应用（caching）
+   * 核心API：
+     1. @Enable驱动：@EnableCaching
+     2. 缓存操作注解：@Caching @Cacheable @CachePut @CacheEvict
+     3. 缓存注解操作数据源：org.springframework.cache.annotation.AnnotationCacheOperationSource
+     4. 缓存注解解析器：org.springframework.cache.annotation.SpringCacheAnnotationParser
+     5. 缓存管理器：org.springframework.cache.CacheManager
+     6. 缓存接口：org.springframework.cache.Cache
+     7. 缓存代理配置：org.springframework.cache.annotation.ProxyCachingConfiguration
+     8. 缓存PointcutAdvisor实现：org.springframework.cache.interceptor.BeanFactoryCacheOperationSourceAdvisor
+     9. 缓存MethodInterceptor实现：org.springframework.cache.interceptor.CacheInterceptor
+4. Spring异步调度中的应用（scheduling）
+   * 核心API：
+     1. @Enable驱动：@EnableAsync
+     2. 异步注解：@Async
+     3. 异步配置器：org.springframework.scheduling.annotation.AsyncConfigurer
+     4. 异步代理配置：org.springframework.scheduling.annotation.ProxyAsyncConfiguration
+     5. 异步PointcutAdvisor实现：org.springframework.scheduling.annotation.AsyncAnnotationAdvisor
+     6. 异步MethodInterceptor实现：org.springframework.scheduling.annotation.AnnotationAsyncExecutionInterceptor      
 
    
