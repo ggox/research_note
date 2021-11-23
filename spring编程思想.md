@@ -433,8 +433,8 @@
 
     ***补充***：XML 扩展机制（自定义 xml 标签）
 
-    1. 编写 XML Schema 文件：定义 XML 结构
-    2. 自定义 NamespaceHandler 实现：命名空间绑定
+    1. 编写 XML Schema 文件：定义 XML 结构，通过spring.schemas找到xsd
+    2. 自定义 NamespaceHandler 实现：命名空间绑定，通过spring.handlers找到NameSpaceHandler
     3. 自定义 BeanDefinitionParser 实现：XML 与 BeanDefinition 解析
     4. 注册 XML 扩展：命名空间与 XML Schema 映射
 
