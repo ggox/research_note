@@ -532,7 +532,7 @@
      | ignoreInvalidFields | 是否忽略非法字段（false）    |
      | autoGrowNestedPaths | 是否自动增加嵌套路径（true） |
      | allowedFields       | 绑定字段白名单               |
-     | disallowedFields    | 绑定字段和名单               |
+     | disallowedFields    | 绑定字段黑名单               |
      | requiredFields      | 必须绑定字段                 |
 
 2. BeanWrapper：Spring 底层 JavaBeans 替换实现
